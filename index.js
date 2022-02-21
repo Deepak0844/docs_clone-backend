@@ -18,7 +18,7 @@ mongoose
 const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://docs-clone-9b983.web.app/",
+    origin: "https://docs-clone-9b983.web.app",
     methods: ["GET", "POST"],
   },
 });
