@@ -14,6 +14,7 @@ mongoose
   .then(console.log("connected to db"))
   .catch((err) => console.log(err));
 
+//socket io
 const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
@@ -33,12 +34,13 @@ io.on("connection", (socket) => {
       socket.broadcast.to(documentId).emit("receive-changes", delta);
     });
     socket.on("save-document", async (data) => {
-      await Document.findByIdAndUpdate(documentId, { data });
+      await Document.findByIdAndUpdate(documentId, { data }); //save the document in db
     });
   });
   console.log("socket-connected");
 });
 
+//creating id and get document by id
 async function findOrCreateDocument(id) {
   if (id == null) return;
   const document = await Document.findById(id);
